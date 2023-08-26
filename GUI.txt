@@ -55,6 +55,8 @@ UndoManager um=new UndoManager();
         format.wordwrap();
         color.changecolor("White");
         window.setVisible(true);
+        ShutdownHook shutdownHook = new ShutdownHook(this);
+    shutdownHook.attachShutdownHook();
     }
     public void createwindow()
     {
