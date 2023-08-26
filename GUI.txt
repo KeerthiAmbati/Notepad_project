@@ -1,0 +1,270 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package Sample1;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.undo.UndoManager;
+
+/**
+ *
+ * @author Keerthi
+ */
+public class GUI implements ActionListener{
+JFrame window;
+JTextArea textArea;
+JScrollPane scrollPane;
+boolean wordwrapon=false;
+JMenuBar menuBar;
+JMenu menufile,menuedit,menuformat,menucolor;
+JMenuItem inew,iopen,isave,isaveas,iexit;
+JMenuItem iundo,iredo;
+JMenuItem iwrap,ifontarial,ifontcsms,ifonttmr,ifontsize8,ifontsize12,ifontsize16,ifontsize20,ifontsize24,ifontsize28;
+JMenu menufont,menufontsize;
+JMenuItem icolor1,icolor2,icolor3,icolor4;
+Function_file file=new Function_file(this);
+Function_format format=new Function_format(this);
+Function_color color=new Function_color(this);
+Function_edit edit=new Function_edit(this);
+UndoManager um=new UndoManager();
+    public static void main(String[] args) {
+        new GUI();
+    }
+    public GUI()
+    {
+        createwindow();
+        createTextArea();
+        createMenuBar();
+        createFileMenu();
+        createFormatMenu();
+        createcolormenu();
+        createeditmenu();
+        format.selectedfont="Arial";
+        format.createFont(16);
+        format.wordwrap();
+        color.changecolor("White");
+        window.setVisible(true);
+    }
+    public void createwindow()
+    {
+        window=new JFrame("Notepad");
+        window.setSize(800,600);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    public void createTextArea()
+    {
+        textArea=new JTextArea();
+        textArea.getDocument().addUndoableEditListener(
+        new UndoableEditListener()
+        {
+            @Override
+            public void undoableEditHappened(UndoableEditEvent e) {
+               // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+               um.addEdit(e.getEdit());
+            }
+            
+        });
+        scrollPane=new JScrollPane(textArea,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+       // window.add(textArea);
+       scrollPane.setBorder(BorderFactory.createEmptyBorder());
+       window.add(scrollPane);
+    }
+    public void createMenuBar()
+    {
+        menuBar=new JMenuBar();
+        window.setJMenuBar(menuBar);
+        menufile=new JMenu("File");
+        menuBar.add(menufile);
+        menuedit=new JMenu("Edit");
+        menuBar.add(menuedit);
+        menuformat=new JMenu("Format");
+        menuBar.add(menuformat);
+        menucolor=new JMenu("Color");
+        menuBar.add(menucolor);
+    }
+    public void createFileMenu()
+    {
+        inew=new JMenuItem("New");
+        inew.addActionListener(this);
+        inew.setActionCommand("New");
+        menufile.add(inew);
+        iopen=new JMenuItem("Open");
+        iopen.addActionListener(this);
+        iopen.setActionCommand("Open");
+        menufile.add(iopen);
+        isave=new JMenuItem("Save");
+        isave.addActionListener(this);
+        isave.setActionCommand("Save");
+        menufile.add(isave);
+        isaveas=new JMenuItem("Save As");
+        isaveas.addActionListener(this);
+        isaveas.setActionCommand("SaveAs");
+        menufile.add(isaveas);
+        iexit=new JMenuItem("Exit");
+        iexit.addActionListener(this);
+        iexit.setActionCommand("Exit");
+        menufile.add(iexit);
+        
+        
+    }
+    public void createeditmenu()
+    {
+        iundo=new JMenuItem("Undo");
+        iundo.addActionListener(this);
+        iundo.setActionCommand("Undo");
+        menuedit.add(iundo);
+        iredo=new JMenuItem("Redo");
+        iredo.addActionListener(this);
+        iredo.setActionCommand("Redo");
+        menuedit.add(iredo);
+    }
+    public void createFormatMenu()
+    {
+        iwrap=new JMenuItem("Word Wrap:Off");
+        iwrap.addActionListener(this);
+        iwrap.setActionCommand("Word Wrap");
+        menuformat.add(iwrap);
+        menufont=new JMenu("Font");
+        menuformat.add(menufont);
+        ifontarial=new JMenuItem("Arial");
+        ifontarial.addActionListener(this);
+        ifontarial.setActionCommand("Arial");
+        menufont.add(ifontarial);
+        ifontcsms=new JMenuItem("Comic Sans MS");
+        ifontcsms.addActionListener(this);
+        ifontcsms.setActionCommand("Comic Sans MS");
+        menufont.add(ifontcsms);
+        ifonttmr=new JMenuItem("Times New Roman");
+        ifonttmr.addActionListener(this);
+        ifonttmr.setActionCommand("Times New Roman");
+        menufont.add(ifonttmr);
+        menufontsize=new JMenu("Font Size");
+        menuformat.add(menufontsize);
+        ifontsize8=new JMenuItem("8");
+        ifontsize8.addActionListener(this);
+        ifontsize8.setActionCommand("size8");
+        menufontsize.add(ifontsize8);
+        ifontsize12=new JMenuItem("12");
+        ifontsize12.addActionListener(this);
+        ifontsize12.setActionCommand("size12");
+        menufontsize.add(ifontsize12);
+        ifontsize16=new JMenuItem("16");
+        ifontsize16.addActionListener(this);
+        ifontsize16.setActionCommand("size16");
+        menufontsize.add(ifontsize16);
+        ifontsize20=new JMenuItem("20");
+        ifontsize20.addActionListener(this);
+        ifontsize20.setActionCommand("size20");
+        menufontsize.add(ifontsize20);
+        ifontsize24=new JMenuItem("24");
+        ifontsize24.addActionListener(this);
+        ifontsize24.setActionCommand("size24");
+        menufontsize.add(ifontsize24);
+        ifontsize28=new JMenuItem("28");
+        ifontsize28.addActionListener(this);
+        ifontsize28.setActionCommand("size28");
+        menufontsize.add(ifontsize28);
+    }
+    public void createcolormenu()
+    {
+        icolor1=new JMenuItem("White");
+        icolor1.addActionListener(this);
+        icolor1.setActionCommand("White");
+        menucolor.add(icolor1);
+        icolor2=new JMenuItem("Black");
+        icolor2.addActionListener(this);
+        icolor2.setActionCommand("Black");
+        menucolor.add(icolor2);
+        icolor3=new JMenuItem("Blue");
+        icolor3.addActionListener(this);
+        icolor3.setActionCommand("Blue");
+        menucolor.add(icolor3);
+        icolor4=new JMenuItem("Red");
+        icolor4.addActionListener(this);
+        icolor4.setActionCommand("Red");
+        menucolor.add(icolor4);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String command=e.getActionCommand();
+        switch(command)
+        {
+            case "New":
+                file.newFile();
+                break;
+            case "Open":
+                file.open();
+                break;
+            case "Save":
+                file.save();
+                break;
+            case "SaveAs":
+                file.saveAs();
+                break;
+            case "Exit":
+                file.exit();
+                break;
+            case "Undo":
+                edit.undo();
+                break;
+            case "Redo":
+                edit.redo();
+                break;
+            case "Word Wrap":
+                format.wordwrap();
+                break;
+            case "Arial":
+                format.setFont(command);
+                break;
+            case "Comic Sans Ms":
+                format.setFont(command);
+                break;
+            case "Times New Roman":
+                format.setFont(command);
+                break;
+            case "size8":
+                format.createFont(8);
+                break;
+            case "size12":
+                format.createFont(12);
+                break;
+             case "size16":
+                format.createFont(16);
+                break;
+            case "size20":
+                format.createFont(20);
+                break;
+            case "size24":
+                format.createFont(24);
+                break;
+            case "size28":
+                format.createFont(28);
+                break;
+            case "White":
+                color.changecolor(command);
+                break;
+            case "Black":
+                color.changecolor(command);
+                break;
+            case "Blue":
+                color.changecolor(command);
+                break;
+            case "Red":
+                color.changecolor(command);
+                break;    
+        }
+    }
+}

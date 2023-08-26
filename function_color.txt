@@ -1,0 +1,47 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Sample1;
+
+import java.awt.Color;
+
+/**
+ *
+ * @author Keerthi
+ */
+public class Function_color {
+    GUI gui;
+    public Function_color(GUI gui)
+    {
+        this.gui=gui;
+    }
+    public void changecolor(String color)
+    {
+        switch(color)
+        {
+            case "White":
+                gui.window.getContentPane().setBackground(Color.WHITE);
+                gui.textArea.setBackground(Color.WHITE);
+                gui.textArea.setForeground(Color.BLACK);
+                break;
+            case "Black":
+                gui.window.getContentPane().setBackground(Color.BLACK);
+                gui.textArea.setBackground(Color.BLACK);
+                gui.textArea.setForeground(Color.WHITE);
+                break;
+            case "Blue":
+                gui.window.getContentPane().setBackground(Color.BLUE);
+                 gui.textArea.setBackground(Color.BLUE);
+                gui.textArea.setForeground(Color.YELLOW);
+                break;
+            case "Red":
+                gui.window.getContentPane().setBackground(Color.RED);
+                gui.textArea.setBackground(Color.RED);
+                gui.textArea.setForeground(Color.GREEN);
+                break;
+            
+        }        
+        
+    }
+}

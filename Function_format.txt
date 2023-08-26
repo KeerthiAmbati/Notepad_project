@@ -1,0 +1,63 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Sample1;
+
+import java.awt.Font;
+
+/**
+ *
+ * @author Keerthi
+ */
+public class Function_format {
+    GUI gui;
+    Font arial,comicsanms,timesnewroman;
+    String selectedfont;
+    public Function_format(GUI gui)
+    {
+        this.gui=gui;
+    }
+    public void wordwrap()
+    {
+        if(gui.wordwrapon==false)
+        {
+            gui.wordwrapon=true;
+            gui.textArea.setLineWrap(true);
+            gui.textArea.setWrapStyleWord(true);
+            gui.iwrap.setText("Word Wrap: On");
+        }
+        else if(gui.wordwrapon==true)
+        {
+            gui.wordwrapon=false;
+            gui.textArea.setLineWrap(false);
+            gui.textArea.setWrapStyleWord(false);
+            gui.iwrap.setText("Word Wrap: Off");
+        }
+    }
+    public void createFont(int fontsize)
+    {
+        arial=new Font("Arial",Font.PLAIN,fontsize);
+        comicsanms=new Font("Comic Sans Ms",Font.PLAIN,fontsize);
+        timesnewroman=new Font("Times New Roman",Font.PLAIN,fontsize);
+        setFont(selectedfont);
+    }
+    public void setFont(String font)
+    {
+        selectedfont=font;
+        switch(selectedfont)
+        {
+            case "Arial":
+                gui.textArea.setFont(arial);
+                break;
+            case "Comic Sans Ms":
+                gui.textArea.setFont(comicsanms);
+                break;
+             case "Times New Roman":
+                gui.textArea.setFont(timesnewroman);
+                break;   
+             
+ 
+        }
+    }
+}
