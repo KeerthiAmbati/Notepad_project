@@ -1,0 +1,24 @@
+package Sample1;
+
+public class ShutdownHook {
+    private GUI gui; // Reference to your GUI class
+
+    public ShutdownHook(GUI gui) {
+        this.gui = gui;
+    }
+
+    public void attachShutdownHook() {
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                saveOnShutdown();
+            }
+        });
+    }
+
+    private void saveOnShutdown() {
+        // Save the content of the text area to a file
+        Function_file file = new Function_file(gui);
+        file.save();
+    }
+}
