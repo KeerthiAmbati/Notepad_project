@@ -32,11 +32,14 @@ To run the notepad application, follow these steps:
   - Save As: Save the current document with a new name.
   - Exit: Close the application.
 
+![image](https://github.com/KeerthiAmbati/Notepad_project/assets/96520942/fa2a4db9-c9be-452e-bf4c-0e68abff2f9e)
 
 
 - **Edit Menu**:
   - Undo: Undo the last edit action.
   - Redo: Redo a previously undone edit action.
+    
+![image](https://github.com/KeerthiAmbati/Notepad_project/assets/96520942/9999ade0-f7ed-48ad-ac25-1629be91604d)
 
 
 
